@@ -80,7 +80,7 @@ namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Controllers
         [ModuleAction(ControlKey = "Edit", TitleKey = "AddItem")]
         public ActionResult Index()
         {
-            var items = ItemManager.Instance.GetItems(ModuleContext.ModuleId);
+            var items = ItemManager.Instance.GetItems(ModuleContext.ModuleId).ToList();
             return View(items);
         }
     }
