@@ -1,33 +1,65 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<List<KidsZone.DNN.Dnn.KidsZone.HelloWorld.Models.Item>>
-
-@using System.Text.RegularExpressions
-@using DotNetNuke.Web.Mvc.Helpers
-
-
-<div id="Items-@Dnn.ModuleContext.ModuleId">
-    @if (Model.Count() == 0)
-    {
-        <p>@Dnn.LocalizeString("NoItems")</p>
-    }
-    else
-    {
-        <ul class="tm_tl">
-            @foreach (var item in Model)
-            {
-                <li class="tm_t">
-                    <h3>@item.ItemName</h3>
-                    <div class="tm_td">@item.ItemDescription</div>
-                    @{
-                        if (Dnn.ModuleContext.IsEditable)
-                        {
-                            <div>
-                                <a href="@Url.Action("Edit", "Item", new {ctl = "Edit", itemId = item.ItemId})">@Dnn.LocalizeString("EditItem")</a>
-                                <a href="@Url.Action("Delete", "Item", new {itemId = item.ItemId})">@Dnn.LocalizeString("DeleteItem")</a>
-                            </div>
-                        }
-                    }
-                </li>
-            }
-        </ul>
-    }
+﻿
+<div style="display:flex; flex-direction:row;">
+    <div style="width: 50%">
+        <h2 style="text-align:center">Add el megunt legóidat és találj rá újra</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt massa ac sapien fermentum aliquet. Donec egestas enim nec congue vulputate. Phasellus laoreet euismod nisi, eget tincidunt dui maximus et. Donec vitae convallis nunc. Pellentesque non tincidunt nisl, in pulvinar metus. Vivamus at velit sed odio mollis tempor sed nec diam. Suspendisse in purus vitae nibh tincidunt sagittis non ac elit. Nullam nec lobortis ex. Fusce velit nulla, cursus imperdiet pulvinar non, varius ullamcorper purus. Nulla luctus, nunc porttitor posuere sagittis, ligula orci facilisis arcu, sed sollicitudin risus velit ut mi. In hac habitasse platea dictumst. Mauris congue lacinia elit at fermentum. Praesent eleifend dictum justo quis imperdiet. Phasellus pretium rutrum lacus, sit amet lobortis nibh.
+        </p>
+        <div style="display:flex; justify-content:space-around; flex-direction: row; ">
+            <a style="padding:20px; background-color:blue; color:white" href="@Url.Action("Hirdetesek", "Item")">Hirdetések megtekintése</a>
+            <a style="padding: 20px; background-color: blue; color: white" href="@Url.Action("HirdetesLetrehozas", "Item")">Hirdetés létrehozása</a>
+        </div>
+    </div>
+    <div>
+        <img src="@Url.Content("~/21339.png")" />
+    </div>
 </div>
+
+<div style="display:flex; flex-direction:row; width:80%;justify-content:center;align-items:center; margin:100px auto 0 auto">
+
+    <div style="display: flex; flex-direction: row; flex-basis: 45%">
+        <img src="@Url.Content("~/21339.png")" style="flex-basis:10%" />
+        <div style="display:flex; flex-direction:column; flex-basis:75%">
+            <h2>Ellenőrzött</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt massa ac sapien fermentum aliquet. Donec egestas enim nec congue vulputate. Phasellus laoreet euismod nisi, eget tincidunt dui maximus et. Donec vitae convallis nunc. Pellentesque non tincidunt nisl, in pulvinar metus. Vivamus at velit sed odio mollis tempor sed nec diam. Suspendisse in purus vitae nibh tincidunt sagittis non ac elit. Nullam nec lobortis ex. Fusce velit nulla, cursus imperdiet pulvinar non, varius ullamcorper purus. Nulla luctus, nunc porttitor posuere sagittis, ligula orci facilisis arcu, sed sollicitudin risus velit ut mi. In hac habitasse platea dictumst. Mauris congue lacinia elit at fermentum. Praesent eleifend dictum justo quis imperdiet. Phasellus pretium rutrum lacus, sit amet lobortis nibh.
+            </p>
+        </div>
+    </div>
+
+    <div style="display:flex; flex-direction:row; flex-basis:45%">
+        <img src="@Url.Content("~/21339.png")" style="flex-basis:10%" />
+        <div style="display:flex; flex-direction:column; flex-basis:75%">
+            <h2>Ellenőrzött</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt massa ac sapien fermentum aliquet. Donec egestas enim nec congue vulputate. Phasellus laoreet euismod nisi, eget tincidunt dui maximus et. Donec vitae convallis nunc. Pellentesque non tincidunt nisl, in pulvinar metus. Vivamus at velit sed odio mollis tempor sed nec diam. Suspendisse in purus vitae nibh tincidunt sagittis non ac elit. Nullam nec lobortis ex. Fusce velit nulla, cursus imperdiet pulvinar non, varius ullamcorper purus. Nulla luctus, nunc porttitor posuere sagittis, ligula orci facilisis arcu, sed sollicitudin risus velit ut mi. In hac habitasse platea dictumst. Mauris congue lacinia elit at fermentum. Praesent eleifend dictum justo quis imperdiet. Phasellus pretium rutrum lacus, sit amet lobortis nibh.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<div style="display: flex; flex-direction: row; width: 80%; justify-content: center; align-items: center; margin: 0 auto 0 auto">
+
+    <div style="display: flex; flex-direction: row; flex-basis: 45%">
+        <img src="@Url.Content("~/21339.png")" style="flex-basis:10%" />
+        <div style="display:flex; flex-direction:column; flex-basis:75%">
+            <h2>Ellenőrzött</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt massa ac sapien fermentum aliquet. Donec egestas enim nec congue vulputate. Phasellus laoreet euismod nisi, eget tincidunt dui maximus et. Donec vitae convallis nunc. Pellentesque non tincidunt nisl, in pulvinar metus. Vivamus at velit sed odio mollis tempor sed nec diam. Suspendisse in purus vitae nibh tincidunt sagittis non ac elit. Nullam nec lobortis ex. Fusce velit nulla, cursus imperdiet pulvinar non, varius ullamcorper purus. Nulla luctus, nunc porttitor posuere sagittis, ligula orci facilisis arcu, sed sollicitudin risus velit ut mi. In hac habitasse platea dictumst. Mauris congue lacinia elit at fermentum. Praesent eleifend dictum justo quis imperdiet. Phasellus pretium rutrum lacus, sit amet lobortis nibh.
+            </p>
+        </div>
+    </div>
+
+    <div style="display:flex; flex-direction:row; flex-basis:45%">
+        <img src="@Url.Content("~/21339.png")" style="flex-basis:10%" />
+        <div style="display:flex; flex-direction:column; flex-basis:75%">
+            <h2>Ellenőrzött</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt massa ac sapien fermentum aliquet. Donec egestas enim nec congue vulputate. Phasellus laoreet euismod nisi, eget tincidunt dui maximus et. Donec vitae convallis nunc. Pellentesque non tincidunt nisl, in pulvinar metus. Vivamus at velit sed odio mollis tempor sed nec diam. Suspendisse in purus vitae nibh tincidunt sagittis non ac elit. Nullam nec lobortis ex. Fusce velit nulla, cursus imperdiet pulvinar non, varius ullamcorper purus. Nulla luctus, nunc porttitor posuere sagittis, ligula orci facilisis arcu, sed sollicitudin risus velit ut mi. In hac habitasse platea dictumst. Mauris congue lacinia elit at fermentum. Praesent eleifend dictum justo quis imperdiet. Phasellus pretium rutrum lacus, sit amet lobortis nibh.
+            </p>
+        </div>
+    </div>
+
+</div>
+

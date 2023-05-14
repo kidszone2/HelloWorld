@@ -17,15 +17,27 @@ using DotNetNuke.Web.Mvc.Framework.Controllers;
 using KidsZone.DNN.Dnn.KidsZone.HelloWorld.Components;
 using KidsZone.DNN.Dnn.KidsZone.HelloWorld.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
+using System.Xml.Linq;
 
 namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Controllers
 {
+    
     [DnnHandleError]
     public class ItemController : DnnController
     {
+        public List<Hirdetes> hirdetesek = new List<Hirdetes>();
 
+        public ItemController()
+        {
+            hirdetesek.Add(new Hirdetes() { Leiras = "asdasdasd", Cim = "asdasdas" });
+            hirdetesek.Add(new Hirdetes() { Leiras = "asdasdasd", Cim = "asdasdas" });
+            hirdetesek.Add(new Hirdetes() { Leiras = "asdasdasd", Cim = "asdasdas" });
+        }
         public ActionResult Delete(int itemId)
         {
             ItemManager.Instance.DeleteItem(itemId, ModuleContext.ModuleId);
@@ -80,8 +92,28 @@ namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Controllers
         [ModuleAction(ControlKey = "Edit", TitleKey = "AddItem")]
         public ActionResult Index()
         {
-            var items = ItemManager.Instance.GetItems(ModuleContext.ModuleId).ToList();
-            return View(items);
+            return View();
+        }
+
+        // Hirdetések listája
+        public ActionResult Hirdetesek()
+        {
+            // Példa adatok
+            return View(hirdetesek);
+        }
+
+        // Hirdetés létrehozása
+        public ActionResult HirdetesLetrehozas()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Form2(Models.Hirdetes sm)
+        {
+            ViewBag.Id = sm.Cim;
+            ViewBag.Name = sm.Ar;
+            return View();
         }
     }
 }

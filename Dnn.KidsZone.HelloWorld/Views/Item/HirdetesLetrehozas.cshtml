@@ -1,0 +1,34 @@
+﻿@using System.Web.Mvc
+@using DotNetNuke.Web.Mvc.Helpers
+
+
+<h4 style="color:purple">
+    <b>ID:</b>    @ViewBag.ID <br />
+    <b>Name:</b>  @ViewBag.Name <br />
+    <b>Addon:</b> @ViewBag.Addon
+</h4>
+<hr />
+<h3><b>Forms: Strongly Typed</b></h3>
+
+
+@using (Html.BeginForm("Form2", "Item", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>Enter ID: </td>
+            <td>@Html.TextBoxFor(m => m.Ar)</td>
+        </tr>
+        <tr>
+            <td>Enter Name: </td>
+            <td>@Html.TextBoxFor(m => m.Name)</td>
+        </tr>
+        <tr>
+            <td>Addon: </td>
+            <td>@Html.CheckBoxFor(m => m.Addon)</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Submit Form" /></td>
+        </tr>
+    </table>
+}
+
