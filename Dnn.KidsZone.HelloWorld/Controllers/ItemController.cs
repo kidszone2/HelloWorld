@@ -30,14 +30,7 @@ namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Controllers
     [DnnHandleError]
     public class ItemController : DnnController
     {
-        public List<Hirdetes> hirdetesek = new List<Hirdetes>();
-
-        public ItemController()
-        {
-            hirdetesek.Add(new Hirdetes() { Leiras = "asdasdasd", Cim = "asdasdas" });
-            hirdetesek.Add(new Hirdetes() { Leiras = "asdasdasd", Cim = "asdasdas" });
-            hirdetesek.Add(new Hirdetes() { Leiras = "asdasdasd", Cim = "asdasdas" });
-        }
+        
         public ActionResult Delete(int itemId)
         {
             ItemManager.Instance.DeleteItem(itemId, ModuleContext.ModuleId);
@@ -55,39 +48,13 @@ namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Controllers
             ViewBag.Users = users;
 
             var item = (itemId == -1)
-                 ? new Item { ModuleId = ModuleContext.ModuleId }
+                 ? new Item { }
                  : ItemManager.Instance.GetItem(itemId, ModuleContext.ModuleId);
 
             return View(item);
         }
 
-        [HttpPost]
-        [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
-        public ActionResult Edit(Item item)
-        {
-            if (item.ItemId == -1)
-            {
-                item.CreatedByUserId = User.UserID;
-                item.CreatedOnDate = DateTime.UtcNow;
-                item.LastModifiedByUserId = User.UserID;
-                item.LastModifiedOnDate = DateTime.UtcNow;
-
-                ItemManager.Instance.CreateItem(item);
-            }
-            else
-            {
-                var existingItem = ItemManager.Instance.GetItem(item.ItemId, item.ModuleId);
-                existingItem.LastModifiedByUserId = User.UserID;
-                existingItem.LastModifiedOnDate = DateTime.UtcNow;
-                existingItem.ItemName = item.ItemName;
-                existingItem.ItemDescription = item.ItemDescription;
-                existingItem.AssignedUserId = item.AssignedUserId;
-
-                ItemManager.Instance.UpdateItem(existingItem);
-            }
-
-            return RedirectToDefaultRoute();
-        }
+       
 
         [ModuleAction(ControlKey = "Edit", TitleKey = "AddItem")]
         public ActionResult Index()
@@ -98,8 +65,9 @@ namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Controllers
         // Hirdetések listája
         public ActionResult Hirdetesek()
         {
+            var results = ItemManager.Instance.GetItems(1).ToList();
             // Példa adatok
-            return View(hirdetesek);
+            return View(results);
         }
 
         // Hirdetés létrehozása
@@ -109,10 +77,18 @@ namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Controllers
         }
 
         [HttpPost]
-        public ActionResult Form2(Models.Hirdetes sm)
+        public ActionResult HirdetesLetrehozas(Item model)
         {
-            ViewBag.Id = sm.Cim;
-            ViewBag.Name = sm.Ar;
+            if (ModelState.IsValid)
+            {
+                // Process the form data or perform any other desired actions
+                // For this example, we simply display a success message
+                ViewBag.Message = "Form submitted successfully!";
+            }
+            Item uj = new Item() {  CreatedByUserId = 12, ItemDescription = model.ItemDescription, ItemName = model.ItemName, CreatedOnDate = DateTime.Now, LastModifiedByUserId = model.LastModifiedByUserId};
+            uj.ModuleId = 1;
+
+            ItemManager.Instance.CreateItem(uj);
             return View();
         }
     }

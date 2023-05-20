@@ -1,34 +1,38 @@
-﻿@using System.Web.Mvc
-@using DotNetNuke.Web.Mvc.Helpers
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<KidsZone.DNN.Dnn.KidsZone.HelloWorld.Models.Item>
 
-
-<h4 style="color:purple">
-    <b>ID:</b>    @ViewBag.ID <br />
-    <b>Name:</b>  @ViewBag.Name <br />
-    <b>Addon:</b> @ViewBag.Addon
-</h4>
-<hr />
-<h3><b>Forms: Strongly Typed</b></h3>
-
-
-@using (Html.BeginForm("Form2", "Item", FormMethod.Post))
-{
-    <table>
-        <tr>
-            <td>Enter ID: </td>
-            <td>@Html.TextBoxFor(m => m.Ar)</td>
-        </tr>
-        <tr>
-            <td>Enter Name: </td>
-            <td>@Html.TextBoxFor(m => m.Name)</td>
-        </tr>
-        <tr>
-            <td>Addon: </td>
-            <td>@Html.CheckBoxFor(m => m.Addon)</td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Submit Form" /></td>
-        </tr>
-    </table>
+@{
+    ViewBag.Title = "Form Example";
 }
 
+<h2>Form Example</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <p>@ViewBag.FirstName</p>
+}
+
+<form action="/Item/HirdetesLetrehozas" method="post">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <span>Legó neve</span>
+        @Html.TextBoxFor(model => model.ItemName)
+        @Html.ValidationMessageFor(model => model.ItemName)
+    </div>
+
+    <div>
+        <span>Leírás (Kérjük írja bele az elérhetőséget is!)</span>
+        @Html.TextBoxFor(model => model.ItemDescription)
+        @Html.ValidationMessageFor(model => model.ItemDescription)
+    </div>
+
+    <div>
+        <span>Ár</span>
+        @Html.TextBoxFor(model => model.LastModifiedByUserId)
+        @Html.ValidationMessageFor(model => model.LastModifiedByUserId)
+    </div>
+
+
+
+    <input type="submit" value="Submit" />
+</form>

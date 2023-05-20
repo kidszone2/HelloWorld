@@ -18,7 +18,7 @@ using System.Web.Caching;
 
 namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Models
 {
-    [TableName("Dnn.KidsZone.HelloWorld_Items")]
+    [TableName("HelloWorld_Items")]
     //setup the primary key for table
     [PrimaryKey("ItemId", AutoIncrement = true)]
     //configure caching using PetaPoco
