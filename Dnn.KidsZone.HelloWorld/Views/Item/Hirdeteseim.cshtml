@@ -1,0 +1,32 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<List<KidsZone.DNN.Dnn.KidsZone.HelloWorld.Models.Item>>
+
+
+<h2>Hirdetéseid</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; flex-direction: row">
+
+        @foreach (var hirdetes in Model)
+        {
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; flex-basis: 27%; margin: 100px 0 0 0; padding: 30px; border: 2px solid #b5b4b0; min-height: 300px;">
+                <p style="text-align:center">@hirdetes.ItemName</p>
+                <p style="text-align:center">@hirdetes.ItemDescription</p>
+                <p>@(hirdetes.LastModifiedByUserId != null ? hirdetes.LastModifiedByUserId.ToString() : "N/A")</p>
+                <a href="@Url.Action("Törlés", "Item", new { ItemId = hirdetes.ItemId })">Törlés</a>
+    </div>
+        }
+
+    </div>
+}
+else
+{
+    <p>Nincsenek elérhető hirdetések.</p>
+}
+
+<p>
+    <a href="@Url.Action("Index", "Item", new {area = "" })">Vissza a főoldalra</a>
+</p>
+
+

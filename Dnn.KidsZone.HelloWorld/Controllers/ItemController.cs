@@ -76,6 +76,20 @@ namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Controllers
             return View();
         }
 
+        public ActionResult Törlés(int ItemId)
+        {
+            var results = ItemManager.Instance.GetItems(1).ToList().Where(x => x.CreatedByUserId == UserController.Instance.GetCurrentUserInfo().UserID && x.ItemId == ItemId).ToList().FirstOrDefault();
+            ItemManager.Instance.DeleteItem(results);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Hirdeteseim()
+        {
+            var results = ItemManager.Instance.GetItems(1).ToList().Where(x=> x.CreatedByUserId == UserController.Instance.GetCurrentUserInfo().UserID).ToList();
+            // Példa adatok
+            return View(results);
+        }
+
         [HttpPost]
         public ActionResult HirdetesLetrehozas(Item model)
         {
@@ -85,11 +99,11 @@ namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Controllers
                 // For this example, we simply display a success message
                 ViewBag.Message = "Form submitted successfully!";
             }
-            Item uj = new Item() {  CreatedByUserId = 12, ItemDescription = model.ItemDescription, ItemName = model.ItemName, CreatedOnDate = DateTime.Now, LastModifiedByUserId = model.LastModifiedByUserId};
+            Item uj = new Item() {  CreatedByUserId = UserController.Instance.GetCurrentUserInfo().UserID, ItemDescription = model.ItemDescription, ItemName = model.ItemName, CreatedOnDate = DateTime.Now, LastModifiedByUserId = model.LastModifiedByUserId};
             uj.ModuleId = 1;
 
             ItemManager.Instance.CreateItem(uj);
-            return View();
+            return RedirectToAction("Hirdeteseim");
         }
     }
 }
