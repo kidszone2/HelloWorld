@@ -95,15 +95,17 @@ namespace KidsZone.DNN.Dnn.KidsZone.HelloWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Process the form data or perform any other desired actions
-                // For this example, we simply display a success message
-                ViewBag.Message = "Form submitted successfully!";
-            }
-            Item uj = new Item() {  CreatedByUserId = UserController.Instance.GetCurrentUserInfo().UserID, ItemDescription = model.ItemDescription, ItemName = model.ItemName, CreatedOnDate = DateTime.Now, LastModifiedByUserId = model.LastModifiedByUserId};
-            uj.ModuleId = 1;
+                Item uj = new Item() { CreatedByUserId = UserController.Instance.GetCurrentUserInfo().UserID, ItemDescription = model.ItemDescription, ItemName = model.ItemName, CreatedOnDate = DateTime.Now, LastModifiedByUserId = model.LastModifiedByUserId };
+                uj.ModuleId = 1;
 
-            ItemManager.Instance.CreateItem(uj);
-            return RedirectToAction("Hirdeteseim");
+                ItemManager.Instance.CreateItem(uj);
+                return RedirectToAction("Hirdeteseim");
+            }
+            else
+            {
+                ViewBag.Message = "Tölts ki minden adatot!";
+                return View();
+            }
         }
     }
 }

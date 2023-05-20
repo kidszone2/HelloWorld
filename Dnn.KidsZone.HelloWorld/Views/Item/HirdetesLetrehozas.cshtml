@@ -4,35 +4,41 @@
     ViewBag.Title = "Form Example";
 }
 
-<h2>Form Example</h2>
+<h2>Adj fel hirdetést!</h2>
+
 
 @if (!string.IsNullOrEmpty(ViewBag.Message))
 {
-    <p>@ViewBag.FirstName</p>
+        <p style="color:red">@ViewBag.Message</p>
 }
 
-<form action="/Item/HirdetesLetrehozas" method="post">
+<form action="/Item/HirdetesLetrehozas" method="post" style="margin: 50px">
     @Html.AntiForgeryToken()
 
     <div>
         <span>Legó neve</span>
-        @Html.TextBoxFor(model => model.ItemName)
-        @Html.ValidationMessageFor(model => model.ItemName)
+        <br />
+        @Html.TextBoxFor(model => model.ItemName, new { Style = "background:white;width: 20%;font-size : 16px" })
     </div>
 
     <div>
         <span>Leírás (Kérjük írja bele az elérhetőséget is!)</span>
-        @Html.TextBoxFor(model => model.ItemDescription)
-        @Html.ValidationMessageFor(model => model.ItemDescription)
+        <br />
+        @Html.TextBoxFor(model => model.ItemDescription, new { Style = "background:white;width: 20%;font-size : 16px" })
     </div>
 
     <div>
         <span>Ár</span>
-        @Html.TextBoxFor(model => model.LastModifiedByUserId)
-        @Html.ValidationMessageFor(model => model.LastModifiedByUserId)
+        <br />
+        @Html.TextBoxFor(model => model.LastModifiedByUserId, new { Style = "background:white;width: 20%;font-size : 16px" })
+        
     </div>
+    <br />
 
 
-
-    <input type="submit" value="Submit" />
+    <input style="background-color:black; color:white; padding:15px; font-weight:bold; font-size:20px" type="submit" value="Hírdetés kiírása" />
 </form>
+<br />
+<p style="margin-top: 50px">
+    <a style="text-decoration: none; color: white; font-weight: bold; background-color: blue; padding: 15px; " href="@Url.Action("Index", "Item", new {area = "" })">Vissza a főoldalra</a>
+</p>
